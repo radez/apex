@@ -1,0 +1,15 @@
+parameter_defaults:
+    IronicEnabledHardwareTypes:
+        - ipmi
+    IronicEnabledPowerInterfaces:
+        - ipmitool
+    IronicEnabledManagementInterfaces:
+        - ipmitool
+    IronicCleaningDiskErase: metadata
+    NovaSchedulerDefaultFilters:
+        - RetryFilter
+        - AggregateInstanceExtraSpecsFilter
+        - AvailabilityZoneFilter
+        - ComputeFilter
+        - ComputeCapabilitiesFilter
+        - ImagePropertiesFilter

@@ -228,6 +228,9 @@ def create_deploy_cmd(ds, ns, inv, tmp_dir,
     # build cmd env args
     for option in deploy_options:
         cmd += " -e {}".format(option)
+    cmd += " -e /usr/share/openstack-tripleo-heat-templates/environments/services/ironic.yaml -e ironic-config.yaml"
+    #cmd += " -e /usr/share/openstack-tripleo-heat-templates/environments/docker.yaml"
+    #cmd += " -e /usr/share/openstack-tripleo-heat-templates/environments/docker-services/ironic.yaml -e ironic-config.yaml"
     cmd += " --ntp-server {}".format(ns['ntp'][0])
     cmd += " --control-scale {}".format(num_control)
     cmd += " --compute-scale {}".format(num_compute)

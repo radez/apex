@@ -145,13 +145,28 @@ def create_vm(name, image, diskbus='sata', baremetal_interfaces=['admin'],
             'bmmacaddress': mac,
             'nicdriver': nic_driver,
         }
-        params['bm_network'] += """
-          <!-- bridged 'bare metal' network on %(bminterface)s -->
-          <interface type='network'>
-            <mac address='%(bmmacaddress)s'/>
-            <source network='%(bminterface)s'/>
-            <model type='%(nicdriver)s'/>
-          </interface>""" % bm_interface_params
+        if bm_interface in ['tenant', 'admin']:
+            idx = {'tenant': 200, 'admin':100}
+            bm_interface_params['index'] = idx[bm_interface]
+            if name != 'undercloud':
+                 bm_interface_params['index'] += int(name[-1]) + 1
+            params['bm_network'] += """
+              <!-- direct attached 'bare metal' network on %(bminterface)s -->
+              <interface type='udp'>
+                <mac address='%(bmmacaddress)s'/>
+                <source address='127.0.0.1' port='8%(index)s'>
+                  <local address='127.0.0.1' port='9%(index)s'/>
+                </source>
+                <model type='%(nicdriver)s'/>
+              </interface>""" % bm_interface_params
+        else:
+            params['bm_network'] += """
+              <!-- bridged 'bare metal' network on %(bminterface)s -->
+              <interface type='network'>
+                <mac address='%(bmmacaddress)s'/>
+                <source network='%(bminterface)s'/>
+                <model type='%(nicdriver)s'/>
+              </interface>""" % bm_interface_params
 
     if direct_boot:
         params['direct_boot'] = """

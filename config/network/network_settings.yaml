@@ -46,12 +46,11 @@ network-config-metadata:
 dns-domain: opnfvlf.org
 dns-search: opnfvlf.org
 dns_nameservers:
-  - 8.8.8.8
-  - 8.8.4.4
+  - 10.11.5.19
+  - 10.5.30.160
 # NTP servers
 ntp:
-  - 0.se.pool.ntp.org
-  - 1.se.pool.ntp.org
+  - clock.redhat.com
 # Syslog server
 syslog:
   server: 10.128.1.24

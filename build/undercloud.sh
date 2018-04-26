@@ -49,6 +49,8 @@ LIBGUESTFS_BACKEND=direct $VIRT_CUSTOMIZE \
     --run-command "sed -i '/ComputeEnableCephStorage/c\\  ComputeEnableCephStorage: true' /usr/share/openstack-tripleo-heat-templates/environments/storage-environment.yaml" \
     --run-command "cp /usr/share/instack-undercloud/undercloud.conf.sample /home/stack/undercloud.conf && chown stack:stack /home/stack/undercloud.conf" \
     --upload ${BUILD_ROOT}/opnfv-environment.yaml:/home/stack/ \
+    --upload ${BUILD_ROOT}/ironic-config.yaml:/home/stack/ \
+    --upload ${BUILD_ROOT}/ironic-pxe.yaml:/usr/share/openstack-tripleo-heat-templates/puppet/services/ironic-pxe.yaml \
     --upload ${BUILD_ROOT}/first-boot.yaml:/home/stack/ \
     --upload ${BUILD_DIR}/enable_rt_kvm.yaml:/usr/share/openstack-tripleo-heat-templates/environments/ \
     --upload ${BUILD_ROOT}/ovs-dpdk-preconfig.yaml:/home/stack/ \
