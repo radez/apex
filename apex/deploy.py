@@ -39,7 +39,8 @@ from apex.overcloud import config as oc_cfg
 from apex.overcloud import deploy as oc_deploy
 
 APEX_TEMP_DIR = tempfile.mkdtemp(prefix='apex_tmp')
-SDN_IMAGE = 'overcloud-full-opendaylight.qcow2'
+ANSIBLE_PATH = 'ansible/playbooks'
+SDN_IMAGE = 'overcloud-full.qcow2'
 
 
 def deploy_quickstart(args, deploy_settings_file, network_settings_file,

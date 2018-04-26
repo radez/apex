@@ -72,6 +72,8 @@ parameter_defaults:
     CinderIscsiNetwork: storage
     GlanceApiNetwork: internal_api
     GlanceRegistryNetwork: internal_api
+    IronicApiNetwork: internal_api
+    IronicNetwork: internal_api
     KeystoneAdminApiNetwork: ctlplane
     KeystonePublicApiNetwork: internal_api
     NeutronApiNetwork: internal_api
